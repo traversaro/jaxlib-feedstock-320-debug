@@ -60,8 +60,13 @@ repro = "python -c 'import jax; print(\"Jax default backend: \" + jax.default_ba
 simple_repro = "python hardcoded_dlopen.py"
 print_symbols_jax_common = "nm -s $CONDA_PREFIX/lib/python3.12/site-packages/jaxlib/libjax_common.so | grep coordination_agent_recoverable"
 print_symbols_xla_cuda_plugin = "nm -s $CONDA_PREFIX/lib/python3.12/site-packages/jax_plugins/xla_cuda12/xla_cuda_plugin.so | grep coordination_agent_recoverable"
+print_all_flags_jax_common = "nm -s $CONDA_PREFIX/lib/python3.12/site-packages/jaxlib/libjax_common.so | grep FLAGS_"
+print_all_flags_xla_cuda_plugin = "nm -s $CONDA_PREFIX/lib/python3.12/site-packages/jax_plugins/xla_cuda12/xla_cuda_plugin.so | grep FLAGS_"
 
 [tasks.print_symbols]
 cmd = "true" # no-op; run only dependencies
 depends-on = ["print_symbols_jax_common", "print_symbols_xla_cuda_plugin"]
 
+[tasks.print_all_flags]
+cmd = "true" # no-op; run only dependencies
+depends-on = ["print_all_flags_jax_common", "print_all_flags_xla_cuda_plugin"]
