@@ -6,37 +6,53 @@ platforms = ["linux-64"] # CUDA jaxlib wheels on conda-forge are linux-64
 [system-requirements]
 cuda = "12"
 
+[dependencies]
+python = "3.12.*"
+
 [feature.jax060.dependencies]
-python = "3.12.*"                # avoid ambiguity warning
 jax = "==0.6.0"
 jaxlib = { version = "==0.6.0", build = "*cuda*" }
 
 [feature.jax062-200.dependencies]
-python = "3.12.*"                # avoid ambiguity warning
 jax = "==0.6.2"
 jaxlib = { version = "==0.6.2", build = "*cuda*_200" }
 
 [feature.jax062-201.dependencies]
-python = "3.12.*"                # avoid ambiguity warning
 jax = "==0.6.2"
 jaxlib = { version = "==0.6.2", build = "*cuda*_201" }
 
 [feature.jax070.dependencies]
-python = "3.12.*"
 jax = "==0.7.0"
 jaxlib = { version = "==0.7.0", build = "*cuda*" }
 
-[feature.jax070pypi.dependencies]
-python = "3.12.*"
+[feature.jax060pypi.pypi-dependencies]
+jax = { version = "==0.6.0", extras = ["cuda12"] }
+
+[feature.jax061pypi.pypi-dependencies]
+jax = { version = "==0.6.1", extras = ["cuda12"] }
+
+[feature.jax062pypi.pypi-dependencies]
+jax = { version = "==0.6.2", extras = ["cuda12"] }
 
 [feature.jax070pypi.pypi-dependencies]
 jax = { version = "==0.7.0", extras = ["cuda12"] }
 
 [environments]
+# jax 0.6.0 from conda-forge 
 jax060 = ["jax060"]
+# jax 0.6.0 from pypi
+jax060pypi = ["jax060pypi"]
+# jax 0.6.1 from pypi
+jax061pypi = ["jax061pypi"]
+# jax 0.6.2 from pypi
+jax062pypi = ["jax062pypi"]
+# jax 0.6.2 build 200 from conda-forge
 jax062-200 = ["jax062-200"]
+# jax 0.6.2 build 201 from conda-forge
 jax062-201 = ["jax062-201"]
+# jax 0.7.0 from conda-forge
 jax070 = ["jax070"]
+# jax 0.7.0 from pypi
 jax070pypi = ["jax070pypi"]
 
 [tasks]
